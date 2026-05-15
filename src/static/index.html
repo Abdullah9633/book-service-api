@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <form action="/api/1.0.0/auth/password-reset-submit" method="post">
+        <input type="hidden" name="token" id="token_field">
+        
+        <label for="my_pass">New password:</label>
+        <input type="password" id="my_pass" name="new_password" required>
+
+        <label for="conf_pass">Confirm New Password:</label>
+        <input type="password" id="conf_pass" name="confirm_new_password" required>
+        
+        <label for="desc">Why changing password (Its Optional):</label>
+        <input type="text" id="desc" name="description">
+        
+        <label for="the_btn">Submit password</label>
+        <input type="submit" id="the_btn" value="Submit">
+    </form>
+
+    <script>
+    // Get full path of that endpoint (which returned, this html file)
+    const path = window.location.pathname;
+
+    // Split, and get last part (token)
+    const token = path.split("/").pop();
+
+    // Put token into hidden input
+    document.getElementById("token_field").value = token;
+</script>
+</body>
+</html>
